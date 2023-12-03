@@ -5,12 +5,11 @@ Created on Fri Dec  1 21:54:57 2023
 @author: RoiMinuit
 """
 
-# puzzle one of advent of code
+## puzzle one of advent of code
+# imports
+import re
 
 def trebuchet(fname):
-    # imports
-    import re
-    
     # open, read, and close
     with open('puzzle1.txt', 'r') as f:
         lines = f.readlines()
@@ -34,4 +33,22 @@ def trebuchet(fname):
                 clean.append(int(sublist[0] + sublist[-1]))
     return sum(clean)
 
-print(f"The calibration value is {trebuchet('puzzle1.txt')}.")
+# print(f"The calibration value is {trebuchet('puzzle1.txt')}.")
+
+
+## part II
+
+digits = r"one|two|three|four|five|six|seven|eight|nine|\d+"
+num_dict = {'one':1, 'two':2, 'three':3, 'four':4, 'five':5, 'six':6,
+            'seven':7, 'eight':8, 'nine':9}
+clean2 = []
+clean3 = []
+
+with open('puzzle1.txt', 'r') as f:
+    lines = f.readlines()
+    
+for line in lines:
+    clean2.append(re.findall(digits, line))
+    for listx in clean2:
+        for element in listx:
+            element = int(element) if element.isdigit() else num_dict[element]
