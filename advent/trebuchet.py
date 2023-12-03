@@ -11,7 +11,7 @@ import re
 
 def trebuchet(fname):
     # open, read, and close
-    with open('puzzle1.txt', 'r') as f:
+    with open(fname, 'r') as f:
         lines = f.readlines()
 
     # obtain clean records of numbers
@@ -49,6 +49,6 @@ with open('puzzle1.txt', 'r') as f:
     
 for line in lines:
     clean2.append(re.findall(digits, line))
-    for listx in clean2:
-        for element in listx:
+    for sublist in clean2:
+        for element in sublist:
             element = int(element) if element.isdigit() else num_dict[element]
