@@ -69,3 +69,4 @@ for sub in clean3:
         pass
     else:
         re.sub(match[0], num_dict[match[0]], sub)
+        # won't convert
