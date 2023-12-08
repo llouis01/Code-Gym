@@ -51,19 +51,27 @@ df = pd.DataFrame(data)
 # intersect
 inter = []
 for i in range(0, len(df)):
-    xy = list(set(df.win[i]) & set(df.play[i]))
-    inter.append(xy)
+    sett = list(set(df.win[i]) & set(df.play[i]))
+    inter.append(sett)
     
 # append to df
 df['sets'] = inter
 
 # score
-scores = []
-for element in df.sets:
-    if len(element) < 1:
-        x = 0
-    elif len(element) == 1:
-        x = 1
-    else:
-        x = 2 ** len(element)
-    scores.append(x)
+def get_scores(col):
+    scores = []
+    for element in df[col]:
+        if len(element) < 1:
+            x = 0
+        elif len(element) == 1:
+            x = 1
+        elif len(element) == 2:
+            x = 2
+        else:
+            x = 2 ** len(element)
+        scores.append(x)
+    return scores
+
+# append to df
+df['scores'] = get_scores('sets')
+print(f'Sum of scores: {sum(df.scores)}')
