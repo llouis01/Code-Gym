@@ -45,7 +45,8 @@ def scratchcard(fname):
 win, hand = scratchcard(fname)
 
 # create df
-data = {'win':win, 'play':hand}
+cards = ['card_' + str(i) for i in range(1, len(win) + 1)]
+data = {'cards': cards, 'win':win, 'play':hand}
 df = pd.DataFrame(data)
 
 # intersect
@@ -68,7 +69,7 @@ def get_scores(col):
         elif len(element) == 2:
             x = 2
         else:
-            x = 2 ** len(element)
+            x = 1 * (2 ** (len(element) - 1))
         scores.append(x)
     return scores
 
