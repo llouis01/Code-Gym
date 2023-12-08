@@ -29,22 +29,23 @@ for sublist in range(0, len(data)):
         
 
 win = []
-play = []
+hand = []
 for lst in clean:
-    if len(lst) < 25:
-        win.append(lst)
+    x = [int(i) for i in lst if i]
+    if len(x) < 25:
+        win.append(x)
     else:
-        play.append(lst)
+        hand.append(x)
 
-data = {'win':win, 'play':play}
+data = {'win':win, 'play':hand}
 df = pd.DataFrame(data)
 print(df)
 
-win2 = []
-play2 = []
-for listx in df.win:
-    for el in listx:
-        win2.append(int(el))
-for listx in df.play:
-    for el in listx:
-        play2.append(int(el))
+# win2 = []
+# play2 = []
+# for listx in df.win:
+#     for el in listx:
+#         win2.append(int(el))
+# for listx in df.play:
+#     for el in listx:
+#         play2.append(int(el))
