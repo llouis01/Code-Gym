@@ -7,9 +7,10 @@ Created on Tue Dec  5 20:58:39 2023
 
 import re
 import pandas as pd
+fname = "puzzle4.txt"
 
 # import text data
-with open("puzzle4.txt", 'r') as f:
+with open(fname, 'r') as f:
     lines = f.readlines()
 
 # extract data
@@ -26,7 +27,7 @@ clean = []
 for sublist in range(0, len(data)):
     for element in range(0, 2):
         clean.append(re.findall('\d+', data[sublist][element]))
-        
+
 
 win = []
 hand = []
@@ -39,13 +40,9 @@ for lst in clean:
 
 data = {'win':win, 'play':hand}
 df = pd.DataFrame(data)
-print(df)
 
-# win2 = []
-# play2 = []
-# for listx in df.win:
-#     for el in listx:
-#         win2.append(int(el))
-# for listx in df.play:
-#     for el in listx:
-#         play2.append(int(el))
+# intersect
+inter = []
+for el in df.win:
+    for il in df.play:
+        inter.append(list(set(el) & set(il)))
