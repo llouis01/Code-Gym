@@ -27,3 +27,5 @@ for folder in folders:
 for file in all_data:
     df = pd.read_csv(file, low_memory=False)
     print(df.shape)
+    
+# Not fast at all :D
