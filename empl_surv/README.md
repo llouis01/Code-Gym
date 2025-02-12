@@ -1,1 +1,0 @@
-### Attempting to analyze employees' mental health status through their comments.
