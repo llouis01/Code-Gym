@@ -1,7 +1,6 @@
 """ Utils for importing images and data """
 
-# library imports
-
+## library imports
 import os
 import cv2
 import time
@@ -103,3 +102,12 @@ def view_train_images(x, y, n = 5):
         plt.imshow(x[img], cmap="gray")
         plt.show()
         print(y[img])
+
+
+## func to get data for CV project
+# def get_images(train_dir, val_dir, test_dir, train_num = int):
+#     """ Get data for CV project """
+#     x_train, y_train = import_train(train_dir, train_num)
+#     x_val, y_val = import_train(val_dir, ((.15 * train_num)))
+#     x_test, y_test = import_train(test_dir, (.15 * train_num))
+#     return x_train, y_train, x_val, y_val, x_test, y_test
