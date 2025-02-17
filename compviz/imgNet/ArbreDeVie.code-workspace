@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../../../../Program Files/cudnn-windows-x86_64-9.3.0.75_cuda12-archive/bin"
+		}
+	],
+	"settings": {}
+}
