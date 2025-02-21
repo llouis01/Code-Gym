@@ -31,7 +31,7 @@ def import_train(img_dir, img_num=int):
         # read in image, resize, grayscale, and normalize
         for i in range(0, img_num):
             img_path = cv2.imread(img_paths[i])
-            img = cv2.resize(img_path, (224, 224))
+            img = cv2.resize(img_path, (64, 64))
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             img = np.expand_dims(img, axis = 2)
             img = img / 255.0
