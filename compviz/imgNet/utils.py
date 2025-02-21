@@ -56,7 +56,6 @@ def import_train(img_dir, img_num=int):
     return processed_images, labels
 
 
-
 ## func to import test and val images
 def import_others(img_dir, img_num=int):
     """ Import images from the specified directory """
