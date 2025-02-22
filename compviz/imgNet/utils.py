@@ -103,6 +103,27 @@ def view_train_images(x, y, n = 5):
         print(y[img])
 
 
+def plot_training_results(model):
+     """ Plot Accuracy Results """
+     plt.plot(model.model['history']['accuracy'])
+     plt.plot(model.model['history']['val_accuracy'])
+     plt.title('Model Accuracy')
+     plt.xlabel('Epock')
+     plt.ylabel('Accuracy')
+     plt.legend(['Train', 'Val'], loc='bottom right')
+     plt.show()
+
+     """ Plot Loss Results """
+     plt.plot(model.model['history']['accuracy'])
+     plt.plot(model.model['history']['val_accuracy'])
+     plt.title('Model Accuracy')
+     plt.xlabel('Epock')
+     plt.ylabel('Accuracy')
+     plt.legend(['Train', 'Val'], loc='bottom right')
+     plt.show()
+
+
+
 ## func to get data for CV project
 # def get_images(train_dir, val_dir, test_dir, train_num = int):
 #     """ Get data for CV project """
