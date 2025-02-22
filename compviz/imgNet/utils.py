@@ -103,25 +103,27 @@ def view_train_images(x, y, n = 5):
         print(y[img])
 
 
-def plot_training_results(model):
+def plot_training_results(history):
      """ Plot Accuracy Results """
-     plt.plot(model.model['history']['accuracy'])
-     plt.plot(model.model['history']['val_accuracy'])
+     plt.figure(figsize=(12, 4))
+     plt.subplot(1, 2, 1)
+     plt.plot(history.history['accuracy'])
+     plt.plot(history.history['val_accuracy'])
      plt.title('Model Accuracy')
-     plt.xlabel('Epock')
+     plt.xlabel('Epoch')
      plt.ylabel('Accuracy')
-     plt.legend(['Train', 'Val'], loc='bottom right')
+     plt.legend(['Train', 'Val'], loc='best')
      plt.show()
 
      """ Plot Loss Results """
-     plt.plot(model.model['history']['accuracy'])
-     plt.plot(model.model['history']['val_accuracy'])
-     plt.title('Model Accuracy')
-     plt.xlabel('Epock')
-     plt.ylabel('Accuracy')
-     plt.legend(['Train', 'Val'], loc='bottom right')
+     plt.subplot(1, 2, 2)
+     plt.plot(history.history['loss'])
+     plt.plot(history.history['val_loss'])
+     plt.title('Model Loss')
+     plt.xlabel('Epoch')
+     plt.ylabel('Loss')
+     plt.legend(['Train', 'Val'], loc='best')
      plt.show()
-
 
 
 ## func to get data for CV project
