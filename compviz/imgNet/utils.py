@@ -168,6 +168,50 @@ def fast_import(img_dir, img_num=int):
     return list(processed_images), list(labels)
 
 
+def fast_import2(img_dir, img_num=int):
+    """ Import and preprocess images concurrently from the specified directory """
+    start = time.time()
+    
+    # Helper function to process individual images
+    def process_image(img_path):
+        """ Read and preprocess a single image, returning the processed image and its label """
+        img = cv2.imread(img_path)
+        img = cv2.resize(img, (64, 64))
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        img = np.expand_dims(img, axis=2)
+        img = img / 255.0
+        label = img_path.split(os.path.sep)[-2]  # label is the parent folder of the image
+        return img, label
+
+    # Collect image paths
+    img_paths = [os.path.join(root, file) 
+                 for root, dirs, files in os.walk(img_dir) 
+                 for file in files if file.endswith(".JPEG")]
+
+    # Shuffle images to get random images from random folders
+    random.shuffle(img_paths)
+    img_num = min(img_num, len(img_paths))
+    img_paths = img_paths[:img_num]
+
+    processed_images = []
+    labels = []
+
+    # Use ThreadPoolExecutor to process images concurrently
+    with ThreadPoolExecutor(max_workers=8) as executor:  # You can adjust the number of threads here
+        results = executor.map(process_image, img_paths)
+
+    # Collect processed images and labels
+    for img, label in results:
+        processed_images.append(img)
+        labels.append(label)
+
+    # Output stats
+    end = time.time()
+    print(f"Function processed {img_num} images in {round(end - start)} seconds.\n")
+
+    return processed_images, labels
+
+
 ## func to get data for CV project
 # def get_images(train_dir, val_dir, test_dir, train_num = int):
 #     """ Get data for CV project """
