@@ -48,6 +48,7 @@ def import_train(img_dir, img_num=int):
 
     # shuffle images to get random images from random folders and process while generating labels
     random.shuffle(img_paths)
+    img_num = min(img_num, len(img_paths))
     process_image_batches(img_paths, processed_images, img_num, labels)
 
     # return run stats and data        
