@@ -31,7 +31,7 @@ def import_train(img_dir, img_num=int):
         # read in image, resize, grayscale, and normalize
         for i in range(0, img_num):
             img_path = cv2.imread(img_paths[i])
-            img = cv2.resize(img_path, (224, 224))
+            img = cv2.resize(img_path, (64, 64))
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             img = np.expand_dims(img, axis = 2)
             img = img / 255.0
@@ -54,7 +54,6 @@ def import_train(img_dir, img_num=int):
     end = time.time()
     print(f"Function processed {img_dir} in {round(end - start)} seconds.\n")
     return processed_images, labels
-
 
 
 ## func to import test and val images
@@ -102,6 +101,29 @@ def view_train_images(x, y, n = 5):
         plt.imshow(x[img], cmap="gray")
         plt.show()
         print(y[img])
+
+
+def plot_training_results(history):
+     """ Plot Accuracy Results """
+     plt.figure(figsize=(12, 4))
+     plt.subplot(1, 2, 1)
+     plt.plot(history.history['accuracy'])
+     plt.plot(history.history['val_accuracy'])
+     plt.title('Model Accuracy')
+     plt.xlabel('Epoch')
+     plt.ylabel('Accuracy')
+     plt.legend(['Train', 'Val'], loc='best')
+     plt.show()
+
+     """ Plot Loss Results """
+     plt.subplot(1, 2, 2)
+     plt.plot(history.history['loss'])
+     plt.plot(history.history['val_loss'])
+     plt.title('Model Loss')
+     plt.xlabel('Epoch')
+     plt.ylabel('Loss')
+     plt.legend(['Train', 'Val'], loc='best')
+     plt.show()
 
 
 ## func to get data for CV project
