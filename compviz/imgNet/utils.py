@@ -7,6 +7,7 @@ import time
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+from concurrent.futures import ThreadPoolExecutor
 
 ## func to import train images
 def import_train(img_dir, img_num=int):
@@ -125,6 +126,46 @@ def plot_training_results(history):
      plt.ylabel('Loss')
      plt.legend(['Train', 'Val'], loc='best')
      plt.show()
+
+
+
+def fast_import(img_dir, img_num=int):
+    """ Import images from the specified directory efficiently """
+    start = time.time()
+    
+    # Collect image paths
+    img_paths = [os.path.join(root, file)
+                 for root, _, files in os.walk(img_dir)
+                 for file in files if file.endswith(".JPEG")]
+    
+    # Shuffle and select images
+    random.shuffle(img_paths)
+    img_num = min(img_num, len(img_paths))
+    selected_paths = img_paths[:img_num]
+
+    def process_image(img_path):
+        """ Load, preprocess image and extract label """
+        img = cv2.imread(img_path)
+        if img is None:
+            return None, None  # Skip corrupted images
+        
+        img = cv2.resize(img, (64, 64))
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        img = np.expand_dims(img, axis=2) / 255.0
+        label = os.path.basename(os.path.dirname(img_path))
+        return img, label
+
+    # Use ThreadPoolExecutor for parallel processing
+    processed_images, labels = [], []
+    with ThreadPoolExecutor() as executor:
+        results = list(executor.map(process_image, selected_paths))
+
+    # Filter out None values (for corrupted images)
+    processed_images, labels = zip(*[(img, label) for img, label in results if img is not None])
+
+    # Print runtime
+    print(f"Function processed {img_num} images in {round(time.time() - start, 2)} seconds.\n")
+    return list(processed_images), list(labels)
 
 
 ## func to get data for CV project
