@@ -88,7 +88,7 @@ def fast_import2(img_dir, img_num=int):
     def process_image(img_path):
         """ Read and preprocess a single image, returning the processed image and its label """
         img = cv2.imread(img_path)
-        img = cv2.resize(img, (64, 64), interpolation=cv2.INTER_CUBIC)
+        img = cv2.resize(img, (224, 224), interpolation=cv2.INTER_CUBIC)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = np.expand_dims(img, axis=2)
         img = img / 255.0
