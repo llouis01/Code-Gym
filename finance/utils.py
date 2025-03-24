@@ -1,4 +1,14 @@
-# make data prep class
+# library imports
+import re
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import LabelEncoder as LE
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier as DTC, plot_tree as PT
+from sklearn.metrics import accuracy_score, classification_report# make data prep class
+
+
+# build class
 class SimpleDataProcessing:
 
     # initialize the class
@@ -23,7 +33,7 @@ class SimpleDataProcessing:
         return df
     
     # split data
-    def make_XY(self, df, target_var='Loan_Approval_Status'):
+    def make_XY(self, df, target_var):
         df = self.transform_cat_cols(df)
 
         # drop ID columns, isolate target var
@@ -55,6 +65,6 @@ class SimpleDataProcessing:
         print(classification_report(y_test, y_pred))
 
     # preprocess
-    def process_data(self):
+    def process_data(self, target_var):
         df = self.load_data()
-        return self.make_XY(df)
+        return self.make_XY(df, target_var)
