@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder as LE
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier as DTC, plot_tree as PT
-from sklearn.metrics import accuracy_score, classification_report# make data prep class
+from sklearn.metrics import accuracy_score, classification_report
 
 
-# build class
+# make data prep class
 class SimpleDataProcessing:
 
     # initialize the class
@@ -47,7 +47,7 @@ class SimpleDataProcessing:
         return x_train, x_val, x_test, y_train, y_val, y_test
     
     # make and train model
-    def make_and_train_tree(self, x_train, y_train, max_depth=5):
+    def make_and_train_tree(self, x_train, y_train, max_depth):
         model = DTC(random_state=42, max_depth=max_depth)
         model.fit(x_train, y_train)
         return model
