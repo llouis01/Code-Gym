@@ -42,7 +42,7 @@ class WeatherAPI:
 if __name__ == "__main__":
     # Replace 'your_api_key' with your actual OpenWeatherMap API key
     api_key = "5f5c5a9bbd6f6db4d60ed3c87bee520e"
-    city = "London"
+    city = "Stafford"
 
     weather_api = WeatherAPI(api_key)
     weather_data = weather_api.get_weather_by_city(city)
