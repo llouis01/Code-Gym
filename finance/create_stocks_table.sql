@@ -1,13 +1,21 @@
-CREATE DATABASE stocks-data;
-USE stocks-data;
+CREATE DATABASE IF NOT EXISTS financial_db;
+USE financial_db;
 
-CREATE TABLE stock-prices(
-    id INT AUTO_INCREMENTAL PRIMARY KEY,
-    symbol VARCHAR(10),
-    timestamp DATETIME,
+CREATE TABLE historical (
+    date DATETIME,
     open FLOAT,
     high FLOAT,
     low FLOAT,
     close FLOAT,
     volume FLOAT,
+    dividends FLOAT,
+    `stock splits` FLOAT,
+    ticker VARCHAR(10),
+    cpi FLOAT,
+    unrate FLOAT,
+    csi FLOAT
 );
+
+SELECT * FROM historical as h;
+
+ALTER TABLE historical CHANGE stock_splits `stock splits` FLOAT;
