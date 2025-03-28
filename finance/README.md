@@ -30,3 +30,15 @@
         Loan_Approval_Status	String	    Historical loan approval decision (Approved, Rejected).
 
     b. 
+
+
+### Economic Analysis ###
+
+1. I will attempt to collect financial data on various companies as well as CPI and Unemployment rates over the max length of time allowed. 
+   My objective is to study how these companies were affected by the actions of the US government.
+
+2. Requirements:
+    a. yahoo finance package
+    b. Federal reserve API
+    c. EIA - https://www.eia.gov/opendata/documentation.php
+    d. 
