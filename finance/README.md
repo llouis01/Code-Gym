@@ -40,3 +40,5 @@
 2. Requirements:
     a. yahoo finance package
     b. Federal reserve API
+    c. EIA - https://www.eia.gov/opendata/documentation.php
+    d. 
