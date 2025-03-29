@@ -38,7 +38,6 @@
    My objective is to study how these companies were affected by the actions of the US government.
 
 2. Requirements:
-    a. yahoo finance package
-    b. Federal reserve API
-    c. EIA - https://www.eia.gov/opendata/documentation.php
-    d. 
+    a. Yahoo Finance package
+    b. Federal Reserve API
+    d. MySQL
